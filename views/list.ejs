@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To DO List</title>
+    <style>
+        body {
+            text-align: center; 
+        }
+        ul {
+            list-style-type: none; 
+            font-size: 2rem; 
+            color: blue; 
+        }
+        .center {
+            display: flex; 
+            align-items: center; 
+            gap: 5px;
+            justify-content: center
+        }
+
+    </style>
+</head>
+<body>
+     <h1><%= Today %></h1>
+     <h2><%= Name%> </h2>
+     <ul>
+         
+         <% for(let i =  0; i < ItemsList.length; i++) { %> 
+            <form action="/delete" method="POST">
+                <div class="center">
+                    <input type="checkbox" name="checkbox" value="<%= ItemsList[i] %>"  onChange="this.form.submit()">
+                    <li><%= ItemsList[i] %></li>
+                </div>
+                <input type="hidden" name="listName" value="<%=Name%>">
+          </form>
+            
+         <%}%>
+     </ul>
+     <form action="/" method="POST">
+        <input type="text" placeholder="Enter the next thing to do" name="addItem">
+        <button type="submit" name="list" value=<%=Name%>> Add </button>
+
+     </form>
+      
+</body>
+</html>
