@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose')
 const _ = require('lodash')
-
+require('dotenv').config(); 
 const date = require(__dirname + "/date.js"); 
 
 const app = express();
@@ -12,7 +12,8 @@ app.use(bodyParser.urlencoded({extended : true}));
 
 // mongoose.connect('mongodb://localhost:27017/toDoListDB'); 
 async function connectDB(){
-  await mongoose.connect('mongodb+srv://toDoApp:Password%40123@cluster0.s4wo0kn.mongodb.net/complexApp?appName=Cluster0', {
+  // new password atlas database idiotLeaked@321
+  await mongoose.connect(process.env.CONNECTIONSTRING, {
                          
     family: 4 // Force Node.js to use IPv4 instead of IPv6
   }); 
@@ -20,7 +21,7 @@ async function connectDB(){
 
 
 async function connectDB2(){
-  await mongoose.connect('mongodb://toDoApp:Password%40123@ac-x0p62it-shard-00-00.s4wo0kn.mongodb.net:27017,ac-x0p62it-shard-00-01.s4wo0kn.mongodb.net:27017,ac-x0p62it-shard-00-02.s4wo0kn.mongodb.net:27017/toDoListDB?ssl=true&replicaSet=atlas-jipilm-shard-0&authSource=admin', {
+  await mongoose.connect(process.env.CONNECTIONSTRING, {
     family: 4 // Force Node.js to use IPv4 instead of IPv6
   }); 
 }
